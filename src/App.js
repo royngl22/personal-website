@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Layout from "./pages/Layout";
+import {
+  createTheme,
+  ThemeProvider,
+  responsiveFontSizes,
+} from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 
-function App() {
+const configTheme = createTheme({
+  palette: {
+    mode: "light",
+    primary: {
+      main: "#d50000", //merah
+      light: "#4a148c", //ungu
+      dark: "#009688", //ijo
+    },
+  },
+  typography: {
+    fontFamily: ["Poppins", "sans-serif"].join(","),
+  },
+});
+
+const theme = responsiveFontSizes(configTheme);
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Layout />
+    </ThemeProvider>
   );
 }
-
-export default App;
