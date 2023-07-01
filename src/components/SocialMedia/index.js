@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -39,6 +39,8 @@ const SocialMediaData = [
 const MySwal = withReactContent(Swal);
 
 export default function SocialMedia() {
+  const { mode } = useTheme().palette;
+
   const handleOnClick = (val) => {
     let cb = (text) => {
       MySwal.fire({
@@ -73,7 +75,8 @@ export default function SocialMedia() {
             borderRadius: "5px",
             display: "flex",
             padding: "10px",
-            bgcolor: "rgb(243 246 246)",
+            // bgcolor: "rgb(243 246 246)",
+            bgcolor: mode === "dark" ? "#bdbdbd" : "rgb(243 246 246)",
           }}
           onClick={() => handleOnClick(val.value)}
         >

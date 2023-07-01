@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Divider, Paper, Typography } from "@mui/material";
+import { Box, Divider, Paper, Typography, useTheme } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import SocialMedia from "../../components/SocialMedia";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
@@ -12,7 +12,7 @@ const HomeWrapper = styled(Paper)(({ theme }) => ({
   borderRadius: "5px",
   marginTop: "80px",
   paddingBottom: "100px",
-  background: "rgb(255 255 255)",
+  // background: "rgb(255 255 255)",
 }));
 
 const ImageWrapper = styled(Box)(({ theme }) => ({
@@ -24,12 +24,14 @@ const ImageWrapper = styled(Box)(({ theme }) => ({
   overflow: "hidden",
   display: "flex",
   boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
+  width: "180px",
+  height: "180px",
 }));
 
 const BioDataWrapper = styled(Box)(({ theme }) => ({
   // background: "#eaeaea",
-  background: "rgb(243 246 246)",
-  marginTop: "40px",
+  background: theme.palette.mode === "dark" ? "#616161" : "rgb(243 246 246)",
+  marginTop: "50px",
   padding: "20px 30px",
   borderRadius: "8px",
 }));
@@ -40,6 +42,13 @@ const BioDataItem = styled(Box)(({ theme }) => ({
   gap: "10px",
   // justifyContent: "space-between",
 }));
+
+// const TypographyName = styled(Typography)(({ theme }) => ({
+//   fontWeight: 700,
+//   color: theme. "#212121",
+//   fontSize: "23px",
+//   textAlign: "center",
+// }));
 
 const Data = [
   {
@@ -67,6 +76,7 @@ const Data = [
 
 export default function Home() {
   const [openMap, setOpenMap] = useState(false);
+  const { mode } = useTheme().palette;
 
   const handleOnClick = (title, val) => {
     switch (title) {
@@ -109,17 +119,24 @@ export default function Home() {
           }}
         >
           <ImageWrapper>
-            <img src="https://placehold.co/180x180" alt="profile-img" />
+            {/* <img src="https://placehold.co/180x180" alt="profile-img" /> */}
+            <img
+              src="img/profile-img.jpg"
+              alt="profile-img"
+              width="100%"
+              height="100%"
+            />
           </ImageWrapper>
         </Box>
 
         <Typography
           sx={{
             fontWeight: 700,
-            color: "#212121",
+            // color: "#212121",
             fontSize: "23px",
             textAlign: "center",
           }}
+          // color={"primary.dark"}
         >
           {process.env.REACT_APP_PROFILE_NAME}
         </Typography>
@@ -127,7 +144,7 @@ export default function Home() {
         <Typography
           sx={{
             // fontWeight: 700,
-            color: "#616161",
+            // color: "#616161",
             fontSize: "20px",
             textAlign: "center",
           }}
@@ -154,7 +171,7 @@ export default function Home() {
                       display: "flex",
                       color: val.color,
                       padding: "10px",
-                      background: "#fff",
+                      background: mode === "dark" ? "#bdbdbd" : "#fff",
                       borderRadius: "5px",
                       boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
                     }}
@@ -164,7 +181,7 @@ export default function Home() {
                   <Box>
                     <Typography
                       sx={{
-                        color: "#616161",
+                        // color: "#616161",
                         fontWeight: "500",
                         fontSize: "16px",
                       }}
@@ -173,7 +190,7 @@ export default function Home() {
                     </Typography>
                     <Typography
                       sx={{
-                        color: "#212121",
+                        // color: "#212121",
                         fontSize: "14px",
                       }}
                     >
